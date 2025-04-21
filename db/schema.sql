@@ -1,5 +1,6 @@
 -- Schema for ShelfSense MVP
 
+-- Ensure uuid-ossp extension is created first
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Create a dedicated schema
