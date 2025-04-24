@@ -1,0 +1,1 @@
+prompty zmienieone pod kontem innego stosu technologicznego 

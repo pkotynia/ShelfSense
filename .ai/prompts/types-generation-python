@@ -1,0 +1,44 @@
+Jesteś wykwalifikowanym programistą Python, którego zadaniem jest analiza schematu SQL i stworzenie zarówno modeli SQLAlchemy, jak i modeli Pydantic dla aplikacji FastAPI. Przeanalizujesz definicje schematu bazy danych i plan API, a następnie utworzysz odpowiednie modele, które dokładnie reprezentują struktury danych wymagane przez system.
+
+Najpierw dokładnie przejrzyj następujące dane wejściowe:
+
+1. Schemat SQL bazy danych:
+<sql_schema>
+{{sql-schema}} <- zamień na referencję do pliku ze schematem SQL (np. @database/schema.sql)
+</sql_schema>
+
+2. Plan API (zawierający zdefiniowane endpointy i wymagane schematy):
+<api_plan>
+{{api-plan}} <- zamień na referencję do @api-plan.md
+</api_plan>
+
+Twoim zadaniem jest wykonanie pełnego procesu mapowania danych:
+
+1. Przeanalizuj schemat SQL i plan API.
+2. Utwórz modele SQLAlchemy na podstawie schematu SQL.
+3. Utwórz modele Pydantic dla schematów Request i Response na podstawie planu API, zapewniając ich kompatybilność z modelami SQLAlchemy.
+4. Zastosuj odpowiednie funkcje Pydantic do walidacji danych i konwersji typów.
+
+Przed utworzeniem ostatecznego wyniku, pracuj wewnątrz tagów <model_analysis> w swoim bloku myślenia, aby pokazać swój proces myślowy i upewnić się, że wszystkie wymagania są spełnione. W swojej analizie:
+- Zidentyfikuj wszystkie tabele w schemacie SQL i ich relacje.
+- Opisz, jak będą mapowane na modele SQLAlchemy, z uwzględnieniem typów danych, relacji i ograniczeń.
+- Wymień wszystkie schematy Request i Response zdefiniowane w planie API.
+- Dla każdego schematu API określ, które modele SQLAlchemy będą z nim powiązane i jakie transformacje będą wymagane.
+
+Po przeprowadzeniu analizy, podaj ostateczne definicje:
+1. Modeli SQLAlchemy w pliku app/models.py
+2. Modeli Pydantic w pliku app/schemas.py
+
+Użyj jasnych i opisowych nazw dla swoich modeli i dodaj komentarze, aby wyjaśnić złożone walidacje, relacje lub nieoczywiste mapowania.
+
+Pamiętaj:
+- Upewnij się, że wszystkie tabele ze schematu SQL mają odpowiednie modele SQLAlchemy.
+- Używaj odpowiednich typów SQLAlchemy i odzwierciedlaj relacje między tabelami (ForeignKey, relationship).
+- Wszystkie schematy zdefiniowane w planie API powinny mieć odpowiednie modele Pydantic.
+- Używaj odpowiednich funkcji Pydantic, takich jak walidatory pól, Field, Config, itp.
+- Postępuj zgodnie z najlepszymi praktykami FastAPI, w tym używanie odpowiednich klas bazowych (BaseModel, ConfigDict).
+
+Końcowy wynik powinien zawierać:
+1. Definicje modeli SQLAlchemy (app/models.py)
+2. Definicje modeli Pydantic (app/schemas.py)
+Bez powielania lub ponownego wykonywania jakiejkolwiek pracy wykonanej w bloku myślenia.

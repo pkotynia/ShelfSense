@@ -1,0 +1,62 @@
+Jesteś doświadczonym architektem oprogramowania specjalizującym się w Pythonie, FastAPI i SQLAlchemy. Twoim zadaniem jest stworzenie szczegółowego planu wdrożenia punktu końcowego REST API dla aplikacji ShelfSense. Twój plan poprowadzi zespół programistów w skutecznym i poprawnym wdrożeniu tego punktu końcowego, zgodnie ze zdefiniowanym stosem technologicznym.
+
+Zanim zaczniesz, zapoznaj się z poniższymi informacjami:
+
+1.  **Specyfikacja endpointu API:**
+    <route_api_specification>
+    {{route-api-specification}} <!-- Wklej tutaj specyfikację konkretnego endpointu z @api-plan.md -->
+    </route_api_specification>
+
+2.  **Powiązane zasoby bazy danych (PostgreSQL):**
+    <related_db_resources>
+    {{db-resources}} <!-- Wklej tutaj odpowiednie definicje tabel i relacji z @db-plan.md -->
+    </related_db_resources>
+
+3.  **Definicje typów (Pydantic):**
+    <type_definitions>
+    @schemas.py
+    </type_definitions>
+
+4.  **Stos technologiczny:**
+    <tech_stack>
+    @tech-stack.md
+    </tech_stack>
+
+5.  **Zasady implementacji:**
+    <implementation_rules>
+    @copilot-instructions.md
+    </implementation_rules>
+
+Twoim zadaniem jest stworzenie kompleksowego planu wdrożenia dla wskazanego endpointu API REST. Przed dostarczeniem ostatecznego planu, użyj tagów `<analysis>`, aby przeanalizować dostarczone informacje i nakreślić swoje podejście. W tej analizie upewnij się, że:
+
+1.  Podsumujesz kluczowe punkty specyfikacji API dla endpointu.
+2.  Wymienisz wymagane i opcjonalne parametry (ścieżki, zapytania, nagłówki, ciało żądania).
+3.  Zidentyfikujesz niezbędne modele Pydantic (dla request/response) i modele SQLAlchemy (dla interakcji z bazą danych).
+4.  Zastanowisz się, jak wyodrębnić logikę biznesową do dedykowanej funkcji serwisowej (w istniejącym lub nowym module serwisowym).
+5.  Zaplanujesz walidację danych wejściowych przy użyciu modeli Pydantic, zgodnie ze specyfikacją API, schematem bazy danych i zasadami implementacji.
+6.  Określisz, czy i jak błędy powinny być logowane (np. standardowe logowanie FastAPI/Python).
+7.  Zidentyfikujesz potencjalne zagrożenia bezpieczeństwa (np. wstrzykiwanie SQL, autoryzacja) w oparciu o specyfikację API i stos technologiczny (JWT, RLS).
+8.  Nakreślisz potencjalne scenariusze błędów i odpowiadające im kody statusu HTTP oraz wyjątki FastAPI (`HTTPException`).
+
+Po przeprowadzeniu analizy, utwórz szczegółowy plan wdrożenia w formacie markdown, korzystając z szablonu dostosowanego do FastAPI i SQLAlchemy. Plan powinien zawierać następujące sekcje:
+
+1.  Przegląd endpointu
+2.  Szczegóły żądania
+3.  Modele danych (Pydantic & SQLAlchemy)
+4.  Szczegóły odpowiedzi
+5.  Przepływ danych
+6.  Zależności FastAPI
+7.  Względy bezpieczeństwa
+8.  Obsługa błędów
+9.  Rozważania wydajnościowe
+10. Kroki implementacji
+11. Przykładowy kod implementacji (opcjonalnie, jako ilustracja)
+
+W całym planie upewnij się, że:
+- Używasz prawidłowych kodów stanu HTTP (200, 201, 400, 401, 404, 500 itp.).
+- Dostosowujesz plan do stosu technologicznego (FastAPI, Pydantic, SQLAlchemy, PostgreSQL, JWT).
+- Postępujesz zgodnie z podanymi zasadami implementacji z `@copilot-instructions.md`.
+
+Końcowym wynikiem powinien być wyłącznie dobrze zorganizowany plan wdrożenia w formacie markdown. Nie powielaj analizy w finalnym planie.
+
+Pamiętaj, aby zapisać swój plan wdrożenia jako `.ai/view-implementation-plan.md`. Upewnij się, że plan jest szczegółowy, przejrzysty i zapewnia kompleksowe wskazówki dla zespołu programistów.
