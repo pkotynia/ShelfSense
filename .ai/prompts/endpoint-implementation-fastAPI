@@ -1,0 +1,58 @@
+Twoim zadaniem jest wdrożenie endpointa interfejsu API REST w **FastAPI** w oparciu o podany plan wdrożenia. Twoim celem jest stworzenie solidnej i dobrze zorganizowanej implementacji, która zawiera odpowiednią walidację za pomocą **Pydantic**, obsługę błędów za pomocą **HTTPException**, wykorzystuje **SQLAlchemy** do interakcji z bazą danych **PostgreSQL** i podąża za wszystkimi logicznymi krokami opisanymi w planie.
+
+Najpierw dokładnie przejrzyj dostarczony plan wdrożenia:
+
+<implementation_plan>
+{{endpoint-implementation-plan}} <- dodaj referencję do planu implementacji endpointa (np. @generations-endpoint-implementation-plan.md)
+</implementation_plan>
+
+<types>
+{{types}} <- dodaj referencje do definicji typów **Pydantic** (np. @types)
+</types>
+
+<implementation_rules>
+{{backend-rules}} <- dodaj referencje do reguł backendowych (np. @shared.mdc, @backend.mdc, @fastapi.mdc)
+</implementation_rules>
+
+<implementation_approach>
+Realizuj maksymalnie 3 kroki planu implementacji, podsumuj krótko co zrobiłeś i opisz plan na 3 kolejne działania - zatrzymaj w tym momencie pracę i czekaj na mój feedback.
+</implementation_approach>
+
+Teraz wykonaj następujące kroki, aby zaimplementować punkt końcowy interfejsu API REST w FastAPI:
+
+1.  **Przeanalizuj plan wdrożenia:**
+    *   Określ metodę HTTP (GET, POST, PUT, DELETE itp.) dla punktu końcowego.
+    *   Określenie struktury adresu URL punktu końcowego (ścieżki).
+    *   Zidentyfikuj wszystkie oczekiwane parametry wejściowe (parametry ścieżki, zapytania, ciało żądania).
+    *   Zrozumienie wymaganej logiki biznesowej i etapów przetwarzania danych, w tym interakcji z bazą danych za pomocą **SQLAlchemy**.
+    *   Zwróć uwagę na wszelkie szczególne wymagania dotyczące walidacji (**Pydantic**) lub obsługi błędów (**HTTPException**).
+
+2.  **Rozpocznij implementację:**
+    *   Zdefiniuj funkcję operacji ścieżki (path operation function) używając odpowiedniego dekoratora **FastAPI** (np. `@app.get("/items/{item_id}")`). Użyj `async def`, jeśli operacja jest związana z I/O (np. zapytania do bazy danych).
+    *   Zdefiniuj modele **Pydantic** dla walidacji ciała żądania i/lub modelu odpowiedzi (`response_model`).
+    *   Skonfiguruj parametry funkcji w oparciu o oczekiwane dane wejściowe (np. `item_id: int`, `query_param: str | None = None`, `item: ItemModel`). FastAPI automatycznie obsłuży walidację typów.
+    *   Zaimplementuj logikę biznesową opisaną w planie, używając wstrzykiwania zależności (**Depends**) do uzyskania sesji **SQLAlchemy** lub innych serwisów.
+    *   Wdróż obsługę błędów dla każdego etapu procesu, podnosząc **HTTPException** z odpowiednim kodem statusu i szczegółami.
+    *   Zapewnij właściwe przetwarzanie i transformację danych zgodnie z wymaganiami.
+    *   Przygotuj dane odpowiedzi, które będą zgodne z zadeklarowanym `response_model` (jeśli istnieje).
+
+3.  **Walidacja i obsługa błędów:**
+    *   Wykorzystaj **Pydantic** do automatycznej walidacji danych wejściowych (ciało żądania, parametry zapytania). Dodaj niestandardowe walidatory w modelach Pydantic w razie potrzeby.
+    *   Używaj odpowiednich kodów statusu HTTP w **HTTPException** dla różnych scenariuszy (np. 400 dla błędnych żądań, 404 dla nie znaleziono, 422 dla błędów walidacji Pydantic, 500 dla błędów serwera).
+    *   Dostarczaj jasne i informacyjne komunikaty o błędach w `detail` obiektu **HTTPException**.
+    *   Obsługuj potencjalne wyjątki (np. z **SQLAlchemy**) i mapuj je na odpowiednie **HTTPException**.
+
+4.  **Rozważania dotyczące testowania:**
+    *   Należy rozważyć przypadki brzegowe i potencjalne problemy, które powinny zostać przetestowane za pomocą **pytest**.
+    *   Pomyśl o testach jednostkowych dla logiki biznesowej (mockując sesję SQLAlchemy) oraz testach integracyjnych dla endpointu.
+    *   Upewnienie się, że wdrożenie obejmuje wszystkie scenariusze wymienione w planie.
+
+5.  **Dokumentacja:**
+    *   Dodaj jasne komentarze w kodzie Python, aby wyjaśnić złożoną logikę lub ważne decyzje.
+    *   Wykorzystaj docstringi w funkcji operacji ścieżki i modelach Pydantic; FastAPI automatycznie użyje ich do generowania dokumentacji OpenAPI (Swagger UI / ReDoc).
+
+Po zakończeniu implementacji upewnij się, że zawiera wszystkie niezbędne importy (`from fastapi import FastAPI, HTTPException, Depends`, `from pydantic import BaseModel`, `from sqlalchemy.orm import Session`, etc.), definicje modeli Pydantic, funkcje operacji ścieżki oraz wszelkie dodatkowe funkcje pomocnicze lub klasy wymagane do implementacji.
+
+Jeśli musisz przyjąć jakieś założenia lub masz jakiekolwiek pytania dotyczące planu implementacji, przedstaw je przed pisaniem kodu.
+
+Pamiętaj, aby przestrzegać najlepszych praktyk projektowania REST API, stosować się do wytycznych dotyczących stylu Pythona (np. PEP 8) i upewnić się, że kod jest czysty, czytelny i dobrze zorganizowany.
