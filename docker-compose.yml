@@ -2,23 +2,36 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:16 # Możesz wybrać konkretną wersję PostgreSQL
+    image: postgres:16 # You can choose a specific PostgreSQL version
     container_name: shelfsense_db
     restart: always
     environment:
-      POSTGRES_DB: shelfsense_db # Nazwa bazy danych
-      POSTGRES_USER: shelfsense_user # Nazwa użytkownika
-      POSTGRES_PASSWORD: your_strong_password # Zmień na silne hasło!
+      POSTGRES_DB: shelfsense_db # Database name
+      POSTGRES_USER: shelfsense_user # Database user name
+      POSTGRES_PASSWORD: your_strong_password # Change to a strong password!
     ports:
-      - "5432:5432" # Mapowanie portu hosta na port kontenera
+      - "5432:5432" # Map host port to container port
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Wolumen do przechowywania danych bazy danych
-      - ./db/schema.sql:/docker-entrypoint-initdb.d/init.sql # Kopiowanie schematu do inicjalizacji
+      - postgres_data:/var/lib/postgresql/data # Volume for database data persistence
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/init.sql # Copy schema for initialization
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U shelfsense_user -d shelfsense_db"]
       interval: 10s
       timeout: 5s
       retries: 5
 
+  web:
+    build: .
+    container_name: shelfsense_web
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg2://shelfsense_user:your_strong_password@db:5432/shelfsense_db
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
 volumes:
-  postgres_data: # Definicja wolumenu
+  postgres_data: # Volume definition

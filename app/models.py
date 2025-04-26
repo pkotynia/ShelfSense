@@ -1,3 +1,6 @@
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, String, DateTime, Text, Integer, ForeignKey, Numeric, Date, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
@@ -5,7 +8,16 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
-# ...existing code...
+# Read the database URL from environment variables
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable is not set.")
+
+# Create the SQLAlchemy engine
+engine = create_engine(DATABASE_URL)
+
+# Create a configured "SessionLocal" class
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 class User(Base):
     __tablename__ = 'users'
