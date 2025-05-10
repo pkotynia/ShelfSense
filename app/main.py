@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 # Import the router for user preferences
-from .routers import preferences
+from .routers import preferences, auth  # Import the new auth router
 
 # Create the FastAPI application instance
 # You can add metadata like title, version, etc. here
@@ -12,6 +12,7 @@ app = FastAPI()
 # All routes defined in the preferences router will now be available
 # under the prefix specified in the router (e.g., /users)
 app.include_router(preferences.router)
+app.include_router(auth.router)  # Include the auth router
 
 # You can add other routers here as the application grows
 # from .routers import another_router
@@ -36,3 +37,4 @@ async def read_root():
 # async def shutdown_event():
 #     # Clean up resources, etc.
 #     pass
+
