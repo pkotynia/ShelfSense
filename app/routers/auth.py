@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from app.schemas import RegisterRequest, AuthResponse
+from app.schemas import RegisterRequest, AuthResponse, LoginRequest  # add missing import for login
 from app.models import User
 from app.dependencies import get_db
 from app.services import auth_service
@@ -32,3 +32,11 @@ def register(
     # Generate JWT
     token = auth_service.create_access_token(user)
     return AuthResponse(id=user.id, email=user.email, token=token)
+
+@router.post("/login", response_model=AuthResponse)
+def login(
+    data: LoginRequest,
+    db: Session = Depends(get_db)
+) -> AuthResponse:
+    """Authenticate existing user and return JWT token"""
+    return auth_service.authenticate(data, db)
