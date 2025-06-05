@@ -1,4 +1,5 @@
-Twoim zadaniem jest wdrożenie endpointa interfejsu API REST w **FastAPI** w oparciu o podany plan wdrożenia. Twoim celem jest stworzenie solidnej i dobrze zorganizowanej implementacji, która zawiera odpowiednią walidację za pomocą **Pydantic**, obsługę błędów za pomocą **HTTPException**, wykorzystuje **SQLAlchemy** do interakcji z bazą danych **PostgreSQL** i podąża za wszystkimi logicznymi krokami opisanymi w planie.
+Twoim zadaniem jest wdrożenie endpointa interfejsu API REST w **FastAPI** w oparciu o podany plan wdrożenia. Twoim celem jest stworzenie solidnej i dobrze zorganizowanej implementacji, 
+która zawiera odpowiednią walidację za pomocą **Pydantic**, obsługę błędów za pomocą **HTTPException**, wykorzystuje **SQLAlchemy** do interakcji z bazą danych **PostgreSQL** i podąża za wszystkimi logicznymi krokami opisanymi w planie.
 
 Najpierw dokładnie przejrzyj dostarczony plan wdrożenia:
 
@@ -7,12 +8,8 @@ Najpierw dokładnie przejrzyj dostarczony plan wdrożenia:
 </implementation_plan>
 
 <types>
-{{types}} <- dodaj referencje do definicji typów **Pydantic** (np. @types)
+@model.py 
 </types>
-
-<implementation_rules>
-{{backend-rules}} <- dodaj referencje do reguł backendowych (np. @shared.mdc, @backend.mdc, @fastapi.mdc)
-</implementation_rules>
 
 <implementation_approach>
 Realizuj maksymalnie 3 kroki planu implementacji, podsumuj krótko co zrobiłeś i opisz plan na 3 kolejne działania - zatrzymaj w tym momencie pracę i czekaj na mój feedback.
@@ -51,7 +48,8 @@ Teraz wykonaj następujące kroki, aby zaimplementować punkt końcowy interfejs
     *   Dodaj jasne komentarze w kodzie Python, aby wyjaśnić złożoną logikę lub ważne decyzje.
     *   Wykorzystaj docstringi w funkcji operacji ścieżki i modelach Pydantic; FastAPI automatycznie użyje ich do generowania dokumentacji OpenAPI (Swagger UI / ReDoc).
 
-Po zakończeniu implementacji upewnij się, że zawiera wszystkie niezbędne importy (`from fastapi import FastAPI, HTTPException, Depends`, `from pydantic import BaseModel`, `from sqlalchemy.orm import Session`, etc.), definicje modeli Pydantic, funkcje operacji ścieżki oraz wszelkie dodatkowe funkcje pomocnicze lub klasy wymagane do implementacji.
+Po zakończeniu implementacji upewnij się, że zawiera wszystkie niezbędne importy (`from fastapi import FastAPI, HTTPException, Depends`, `from pydantic import BaseModel`, `from sqlalchemy.orm import Session`, etc.), 
+definicje modeli Pydantic, funkcje operacji ścieżki oraz wszelkie dodatkowe funkcje pomocnicze lub klasy wymagane do implementacji.
 
 Jeśli musisz przyjąć jakieś założenia lub masz jakiekolwiek pytania dotyczące planu implementacji, przedstaw je przed pisaniem kodu.
 

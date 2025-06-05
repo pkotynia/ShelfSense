@@ -1,4 +1,5 @@
-Jesteś doświadczonym architektem oprogramowania specjalizującym się w Pythonie, FastAPI i SQLAlchemy. Twoim zadaniem jest stworzenie szczegółowego planu wdrożenia punktu końcowego REST API dla aplikacji ShelfSense. Twój plan poprowadzi zespół programistów w skutecznym i poprawnym wdrożeniu tego punktu końcowego, zgodnie ze zdefiniowanym stosem technologicznym.
+Jesteś doświadczonym architektem oprogramowania specjalizującym się w Pythonie, FastAPI i SQLAlchemy. Twoim zadaniem jest stworzenie szczegółowego planu wdrożenia punktu końcowego REST API dla aplikacji ShelfSense. 
+Twój plan poprowadzi zespół programistów w skutecznym i poprawnym wdrożeniu tego punktu końcowego, zgodnie ze zdefiniowanym stosem technologicznym.
 
 Zanim zaczniesz, zapoznaj się z poniższymi informacjami:
 
@@ -9,7 +10,7 @@ Zanim zaczniesz, zapoznaj się z poniższymi informacjami:
 
 2.  **Powiązane zasoby bazy danych (PostgreSQL):**
     <related_db_resources>
-    {{db-resources}} <!-- Wklej tutaj odpowiednie definicje tabel i relacji z @db-plan.md -->
+    @db-plan.md
     </related_db_resources>
 
 3.  **Definicje typów (Pydantic):**
@@ -60,3 +61,4 @@ W całym planie upewnij się, że:
 Końcowym wynikiem powinien być wyłącznie dobrze zorganizowany plan wdrożenia w formacie markdown. Nie powielaj analizy w finalnym planie.
 
 Pamiętaj, aby zapisać swój plan wdrożenia jako `.ai/view-implementation-plan.md`. Upewnij się, że plan jest szczegółowy, przejrzysty i zapewnia kompleksowe wskazówki dla zespołu programistów.
+

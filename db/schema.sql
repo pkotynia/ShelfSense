@@ -212,3 +212,4 @@ CREATE POLICY user_manage_own_recommendation_ratings ON shelfsense.recommendatio
 -- GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA shelfsense TO app_user;
 
 
+INSERT INTO shelfsense.users (email, username, password_hash) VALUES ('test@test.com', 'testuser', 'hashed_password'); -- Replace with actual hashed password
