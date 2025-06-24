@@ -9,11 +9,17 @@ services:
       POSTGRES_DB: shelfsense_db # Database name
       POSTGRES_USER: shelfsense_user # Database user name
       POSTGRES_PASSWORD: your_strong_password # Change to a strong password!
+      # Add this to make initialization logs more verbose
+      POSTGRES_INITDB_ARGS: "--data-checksums"
     ports:
       - "5432:5432" # Map host port to container port
     volumes:
       - postgres_data:/var/lib/postgresql/data # Volume for database data persistence
       - ./db/schema.sql:/docker-entrypoint-initdb.d/init.sql # Copy schema for initialization
+    # Ensure script has execute permissions
+    command: >
+      bash -c "chmod +x /docker-entrypoint-initdb.d/init.sql && 
+      docker-entrypoint.sh postgres"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U shelfsense_user -d shelfsense_db"]
       interval: 10s
