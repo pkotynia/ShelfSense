@@ -26,9 +26,11 @@ services:
       timeout: 5s
       retries: 5
 
-  web:
-    build: .
-    container_name: shelfsense_web
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: shelfsense_backend
     depends_on:
       db:
         condition: service_healthy
@@ -37,7 +39,29 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./backend:/app
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: shelfsense_frontend
+    ports:
+      - "5173:80"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: always
 
 volumes:
   postgres_data: # Volume definition
